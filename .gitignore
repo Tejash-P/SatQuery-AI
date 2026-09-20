@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Local application data
+backend/.env
+backend/satquery.db
+backend/storage/
+
+# Next.js
+frontend/.next/
+frontend/out/
+frontend/node_modules/
+
+# Environment files
+.env
+.env.local
