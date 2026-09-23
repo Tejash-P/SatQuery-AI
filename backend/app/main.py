@@ -21,6 +21,16 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.get("/")
+def root():
+    return {
+        "name": settings.PROJECT_NAME,
+        "status": "online",
+        "docs": "/docs",
+        "health": "/health",
+        "api_v1": settings.API_V1_STR,
+    }
+
 @app.get("/health")
 def health_check():
     return {"status": "ok"}
