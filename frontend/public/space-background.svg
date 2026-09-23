@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="blue" cx="82%" cy="5%" r="48%">
+      <stop offset="0" stop-color="#168ee8" stop-opacity=".9"/>
+      <stop offset=".45" stop-color="#073d9d" stop-opacity=".38"/>
+      <stop offset="1" stop-color="#080d3b" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="coral" cx="12%" cy="90%" r="48%">
+      <stop offset="0" stop-color="#ff5c4d" stop-opacity=".9"/>
+      <stop offset=".42" stop-color="#8d214b" stop-opacity=".38"/>
+      <stop offset="1" stop-color="#080d3b" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="violet" cx="56%" cy="64%" r="46%">
+      <stop offset="0" stop-color="#402c9a" stop-opacity=".28"/>
+      <stop offset="1" stop-color="#080d3b" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="1.2"/></filter>
+    <pattern id="stars" width="173" height="149" patternUnits="userSpaceOnUse">
+      <circle cx="12" cy="18" r="1.2" fill="#fff"/><circle cx="74" cy="42" r=".7" fill="#b9d7ff"/>
+      <circle cx="126" cy="17" r="1" fill="#fff"/><circle cx="151" cy="102" r=".8" fill="#9fc8ff"/>
+      <circle cx="42" cy="123" r=".65" fill="#fff"/><circle cx="96" cy="87" r=".55" fill="#fff"/>
+    </pattern>
+  </defs>
+  <rect width="1600" height="900" fill="#080d3b"/>
+  <rect width="1600" height="900" fill="url(#blue)"/>
+  <rect width="1600" height="900" fill="url(#coral)"/>
+  <rect width="1600" height="900" fill="url(#violet)"/>
+  <rect width="1600" height="900" fill="url(#stars)" opacity=".92"/>
+  <g fill="#fff">
+    <circle cx="214" cy="112" r="2"/><circle cx="614" cy="166" r="1.8"/><circle cx="1134" cy="72" r="2.4"/>
+    <circle cx="1381" cy="298" r="2"/><circle cx="858" cy="480" r="2.2"/><circle cx="103" cy="608" r="1.7"/>
+    <circle cx="1497" cy="688" r="1.8"/><circle cx="428" cy="738" r="1.4"/>
+  </g>
+  <g fill="none" stroke="#4b5fca" stroke-opacity=".16">
+    <ellipse cx="360" cy="850" rx="420" ry="168" stroke-width="2"/>
+    <ellipse cx="360" cy="850" rx="350" ry="138" stroke-width="1"/>
+  </g>
+</svg>

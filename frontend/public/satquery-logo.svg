@@ -1,0 +1,34 @@
+<svg width="520" height="180" viewBox="0 0 520 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="dish" x1="170" y1="32" x2="270" y2="132" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#9B7BFF"/>
+      <stop offset="1" stop-color="#35218A"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="112" y1="38" x2="300" y2="112" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00E6FF"/>
+      <stop offset="1" stop-color="#1976D2"/>
+    </linearGradient>
+    <linearGradient id="wordmark" x1="62" y1="151" x2="444" y2="151" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="0.72" stop-color="#FFFFFF"/>
+      <stop offset="0.73" stop-color="#20BFFF"/>
+      <stop offset="1" stop-color="#20BFFF"/>
+    </linearGradient>
+  </defs>
+  <g opacity="0.95">
+    <path d="M112 54C91 71 87 103 105 122" stroke="url(#ring)" stroke-width="7" stroke-linecap="round"/>
+    <path d="M131 45C112 63 109 94 124 111" stroke="#1769B7" stroke-width="7" stroke-linecap="round"/>
+    <path d="M292 44C320 61 327 94 311 116" stroke="#1769B7" stroke-width="7" stroke-linecap="round"/>
+    <path d="M310 31C344 54 353 96 333 126" stroke="url(#ring)" stroke-width="7" stroke-linecap="round"/>
+    <path d="M161 100C174 62 222 39 278 49C294 52 298 60 285 74C258 102 205 122 168 119C154 118 153 112 161 100Z" fill="url(#dish)" stroke="#55E8FF" stroke-width="4"/>
+    <path d="M226 68L208 129L250 129L264 72" fill="#4932A0"/>
+    <path d="M207 129L198 151H263L251 129" fill="#7B65E6"/>
+    <path d="M194 151H270" stroke="#A995FF" stroke-width="9" stroke-linecap="round"/>
+    <path d="M227 67L225 36" stroke="#9A8AFF" stroke-width="4"/>
+    <circle cx="225" cy="33" r="11" fill="#A991FF"/>
+    <circle cx="244" cy="73" r="11" fill="#60F2FF" stroke="#1D8BFF" stroke-width="5"/>
+    <ellipse cx="225" cy="157" rx="83" ry="17" stroke="#2D3975" stroke-width="2"/>
+    <path d="M143 157H307M163 147L281 168M281 147L163 168M225 140V174" stroke="#2D3975" stroke-width="1"/>
+  </g>
+  <text x="40" y="177" fill="url(#wordmark)" font-family="Arial, sans-serif" font-size="34" font-weight="800" letter-spacing="1">SATQUERY <tspan fill="#20BFFF">AI</tspan></text>
+</svg>
