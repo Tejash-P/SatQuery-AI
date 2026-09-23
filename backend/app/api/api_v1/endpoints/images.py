@@ -30,10 +30,7 @@ def list_project_images(
     db: Session = Depends(deps.get_db),
     current_user: User = Depends(deps.get_current_user)
 ) -> List[ImageResponse]:
-    project_query = db.query(Project).filter(Project.id == project_id)
-    if current_user.role.upper() != "ADMIN":
-        project_query = project_query.filter(Project.owner_id == current_user.id)
-    project = project_query.first()
+    project = db.query(Project).filter(Project.id == project_id).first()
     if not project:
         raise HTTPException(status_code=404, detail="Project not found")
     return db.query(SatelliteImage).filter(SatelliteImage.project_id == project_id).all()

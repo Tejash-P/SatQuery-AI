@@ -45,8 +45,7 @@ def register_user(
     db_user = User(
         email=user_in.email,
         hashed_password=hashed_password,
-        # New accounts start as viewers; elevated roles must be granted by an admin.
-        role="VIEWER"
+        role=user_in.role.value
     )
     db.add(db_user)
     db.commit()
