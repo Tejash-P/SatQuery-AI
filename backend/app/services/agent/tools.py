@@ -1,7 +1,7 @@
 import time
 import math
 import random
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Optional
 
 class AgentTools:
     """
@@ -188,6 +188,8 @@ class AgentTools:
         ]
 
         elapsed = round((time.time() - start) * 1000, 2)
+        explainability = AgentTools.build_explainability_payload("CHANGE_DETECTION", pair_metadata, hotspots=hotspots)
+
         return {
             "tool": "bitemporal_change_detection",
             "change_percentage": change_percentage,
@@ -195,6 +197,7 @@ class AgentTools:
             "changed_area_hectares": changed_hectares,
             "transitions": transitions,
             "hotspots": hotspots,
+            "explainability": explainability,
             "overall_status": "SIGNIFICANT_TRANSFORMATION_DETECTED",
             "confidence": 0.94,
             "execution_time_ms": max(elapsed, 160.0)
@@ -226,6 +229,8 @@ class AgentTools:
         complementarity_index = 0.92
         elapsed = round((time.time() - start) * 1000, 2)
         
+        explainability = AgentTools.build_explainability_payload("CROSS_MODAL_FUSION", pair_metadata)
+
         return {
             "tool": "crossmodal_fusion",
             "modality_pair": "OPTICAL + SAR (Sentinel-2 / Sentinel-1)",
@@ -233,6 +238,62 @@ class AgentTools:
             "cloud_penetration_enabled": True,
             "structural_verification_enabled": True,
             "fusion_insights": fusion_insights,
+            "explainability": explainability,
             "confidence": 0.95,
             "execution_time_ms": max(elapsed, 190.0)
+        }
+
+    @staticmethod
+    def build_explainability_payload(
+        intent: str,
+        pair_metadata: Optional[Dict[str, Any]] = None,
+        hotspots: Optional[List[Dict[str, Any]]] = None
+    ) -> Dict[str, Any]:
+        pair_metadata = pair_metadata or {}
+        image1_id = pair_metadata.get("image1_id")
+        image2_id = pair_metadata.get("image2_id")
+        pair_type = pair_metadata.get("pair_type", "OPTICAL_SAR")
+
+        mod1_label = "Optical (RGB)"
+        mod1_sensor = "Sentinel-2 MSI"
+        mod2_label = "SAR (VV)" if pair_type != "BI_TEMPORAL" else "Optical (T2)"
+        mod2_sensor = "Sentinel-1 SAR (VV)" if pair_type != "BI_TEMPORAL" else "Sentinel-2 MSI (T2)"
+
+        return {
+            "title": "EXPLAINABILITY & SAMPLE OUTPUT",
+            "pair_type": pair_type,
+            "operator_plus": "+",
+            "operator_arrow": "➡",
+            "inputs": [
+                {
+                    "key": "modality_1",
+                    "label": mod1_label,
+                    "sensor": mod1_sensor,
+                    "modality": "OPTICAL",
+                    "image_id": image1_id,
+                    "description": "Optical high-resolution RGB visual spectrum"
+                },
+                {
+                    "key": "modality_2",
+                    "label": mod2_label,
+                    "sensor": mod2_sensor,
+                    "modality": "SAR" if pair_type != "BI_TEMPORAL" else "OPTICAL",
+                    "image_id": image2_id,
+                    "description": "SAR microwave radar (C-band VV polarization backscatter)"
+                }
+            ],
+            "output": {
+                "label": "Change Heatmap",
+                "type": "HEATMAP_OVERLAY",
+                "scale": {
+                    "high_label": "High Change",
+                    "low_label": "Low Change",
+                    "colormap": ["#FF0000", "#FF7700", "#FFDD00", "#00FF66", "#00C8FF", "#0022FF"]
+                },
+                "clusters": [
+                    {"x": 58, "y": 48, "radius": 24, "intensity": 0.96, "label": "Industrial Expansion (High Change)"},
+                    {"x": 44, "y": 62, "radius": 19, "intensity": 0.85, "label": "Riparian Sedimentation (Moderate Change)"},
+                    {"x": 65, "y": 38, "radius": 15, "intensity": 0.72, "label": "Corridor Earthwork"}
+                ]
+            }
         }

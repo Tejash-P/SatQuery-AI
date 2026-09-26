@@ -62,3 +62,26 @@ def update_modality(
     db.commit()
     db.refresh(image)
     return image
+
+@router.get("/{image_id}/file")
+def get_image_file(
+    image_id: int,
+    db: Session = Depends(deps.get_db),
+):
+    import os
+    from fastapi.responses import FileResponse
+    from app.core.config import settings
+    image = db.query(SatelliteImage).filter(SatelliteImage.id == image_id).first()
+    if not image:
+        raise HTTPException(status_code=404, detail="Image not found")
+    
+    local_path = os.path.join(settings.STORAGE_PATH, image.storage_path)
+    if os.path.exists(local_path):
+        media_type = "image/png"
+        if image.file_type in [".jpg", ".jpeg"]:
+            media_type = "image/jpeg"
+        elif image.file_type in [".tif", ".tiff"]:
+            media_type = "image/tiff"
+        return FileResponse(local_path, media_type=media_type)
+    
+    raise HTTPException(status_code=404, detail="Image file not found on disk")

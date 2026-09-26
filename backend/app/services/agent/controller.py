@@ -107,7 +107,8 @@ class AgentController:
             confidence = res["confidence"]
             visual_evidence = {
                 "layer_mode": "FUSED_DUAL_CHANNEL",
-                "insights": res["fusion_insights"]
+                "insights": res["fusion_insights"],
+                "explainability": res.get("explainability")
             }
             metrics = {
                 "complementarity_score": res["complementarity_score"],
@@ -146,7 +147,8 @@ class AgentController:
             visual_evidence = {
                 "layer_mode": "CHANGE_MASK_OVERLAY",
                 "hotspots": res["hotspots"],
-                "transitions": res["transitions"]
+                "transitions": res["transitions"],
+                "explainability": res.get("explainability")
             }
             metrics = {
                 "change_percentage": res["change_percentage"],

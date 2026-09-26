@@ -10,7 +10,9 @@ services:
       - key: PYTHON_VERSION
         value: 3.11.9
       - key: DATABASE_URL
-        value: sqlite:///./satquery.db
+        fromDatabase:
+          name: satquery-db
+          property: connectionString
       - key: JWT_SECRET
         generateValue: true
       - key: CORS_ORIGINS
@@ -19,3 +21,9 @@ services:
         value: local
       - key: STORAGE_PATH
         value: /opt/render/project/src/storage
+
+databases:
+  - name: satquery-db
+    databaseName: satquery
+    user: satquery
+    plan: free

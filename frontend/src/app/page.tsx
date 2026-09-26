@@ -17,7 +17,7 @@ export default function HomePage() {
   }, [router]);
 
   return (
-    <div className="page-container home-page" style={{ minHeight: '100vh', overflow: 'hidden' }}>
+    <div className="page-container home-page" style={{ minHeight: '100vh' }}>
       <div className="space-backdrop" aria-hidden="true" />
 
       {/* Nav */}
@@ -174,7 +174,7 @@ export default function HomePage() {
         borderTop: '1px solid var(--border)',
         color: 'var(--text-muted)', fontSize: 12, marginTop: 60
       }}>
-        SatQuery AI · Built for ISRO Remote Sensing Challenge
+        SatQuery AI · Built by Phoenix Coders
       </footer>
     </div>
   );

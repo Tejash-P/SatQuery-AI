@@ -67,6 +67,7 @@ export const imagesApi = {
   listByProject: (projectId: number) => api.get(`/images/project/${projectId}`),
   updateModality: (id: number, modality: string) =>
     api.patch(`/images/${id}/modality`, { modality }),
+  getFileUrl: (id: number) => `${BASE_URL}/images/${id}/file`,
 };
 
 // ─── Pairs ─────────────────────────────────────────────────────────────────

@@ -46,6 +46,11 @@ img, svg, video, canvas {
   max-width: 100%;
 }
 
+html {
+  overflow-x: hidden;
+  scrollbar-gutter: stable both-edges;
+}
+
 body {
   overflow-x: hidden;
 }
@@ -346,7 +351,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .space-backdrop {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   z-index: -1;
   pointer-events: none;
   background:
