@@ -48,15 +48,21 @@ img, svg, video, canvas {
 
 html {
   overflow-x: hidden;
+  color-scheme: dark;
+  background-color: #08051b;
 }
 
 body {
   overflow-x: hidden;
+  color-scheme: dark;
+  background-color: #08051b;
+  width: 100%;
+  max-width: 100vw;
 }
 
 html, body {
-  height: 100%;
-  background-color: var(--bg-deep);
+  min-height: 100%;
+  background-color: #08051b;
   color: var(--text-primary);
   font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -355,6 +361,7 @@ h1, h2, h3, h4, h5, h6 {
   height: 100%;
   z-index: -1;
   pointer-events: none;
+  overflow: hidden;
   background:
     radial-gradient(ellipse at 4% 83%, rgba(255, 0, 221, 0.82) 0, rgba(177, 0, 202, 0.48) 15%, transparent 38%),
     radial-gradient(ellipse at 77% 17%, rgba(70, 37, 202, 0.78) 0, rgba(47, 17, 108, 0.45) 23%, transparent 52%),
@@ -366,44 +373,110 @@ h1, h2, h3, h4, h5, h6 {
 .space-backdrop::after {
   content: '';
   position: absolute;
-  inset: 0;
+  top: -80px;
+  left: -80px;
+  right: -80px;
+  bottom: -80px;
   background-repeat: repeat;
   pointer-events: none;
 }
 
 @keyframes space-drift {
-  from { transform: translate3d(0, 0, 0) scale(1); }
-  to { transform: translate3d(-28px, 18px, 0) scale(1.03); }
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(-24px, 16px, 0) scale(1.02); }
+  100% { transform: translate3d(0, 0, 0) scale(1); }
 }
 
 @keyframes star-twinkle {
-  0%, 100% { opacity: 0.62; }
-  45% { opacity: 1; }
-  72% { opacity: 0.78; }
+  0%, 100% { opacity: 0.65; }
+  45% { opacity: 1; filter: drop-shadow(0 0 3px rgba(255,255,255,0.8)); }
+  72% { opacity: 0.8; }
 }
 
 .space-backdrop::before {
-  opacity: 0.9;
+  opacity: 0.95;
   background-image:
-    radial-gradient(circle at 12% 17%, #f5c7ff 0 1px, transparent 1.5px),
-    radial-gradient(circle at 31% 12%, #ffffff 0 1px, transparent 1.5px),
-    radial-gradient(circle at 68% 22%, #e5baff 0 1px, transparent 1.5px),
-    radial-gradient(circle at 86% 34%, #ffffff 0 1px, transparent 1.5px),
-    radial-gradient(circle at 24% 59%, #ff75ef 0 1px, transparent 1.5px),
-    radial-gradient(circle at 58% 73%, #d9c5ff 0 1px, transparent 1.5px),
-    radial-gradient(circle at 91% 78%, #ffffff 0 1px, transparent 1.5px);
+    radial-gradient(circle at 12% 17%, #f5c7ff 0 1.5px, transparent 2px),
+    radial-gradient(circle at 31% 12%, #ffffff 0 1.5px, transparent 2px),
+    radial-gradient(circle at 68% 22%, #e5baff 0 1.5px, transparent 2px),
+    radial-gradient(circle at 86% 34%, #ffffff 0 1.5px, transparent 2px),
+    radial-gradient(circle at 24% 59%, #ff75ef 0 1.5px, transparent 2px),
+    radial-gradient(circle at 58% 73%, #d9c5ff 0 1.5px, transparent 2px),
+    radial-gradient(circle at 91% 78%, #ffffff 0 1.5px, transparent 2px);
   background-size: 173px 149px, 257px 211px, 311px 263px, 227px 197px, 347px 293px, 419px 337px, 283px 241px;
-  animation: space-drift 34s linear infinite, star-twinkle 7s ease-in-out infinite;
+  animation: space-drift 28s ease-in-out infinite, star-twinkle 6s ease-in-out infinite;
 }
 
 .space-backdrop::after {
   background: linear-gradient(180deg, rgba(5, 4, 20, 0.28), rgba(7, 5, 25, 0.58));
-  animation: space-drift 48s ease-in-out infinite alternate-reverse;
+  animation: space-drift 42s ease-in-out infinite alternate-reverse;
+}
+
+/* Shooting star meteor effect */
+.shooting-star {
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.95), rgba(0, 212, 255, 0.8), transparent);
+  border-radius: 999px;
+  filter: drop-shadow(0 0 6px rgba(0, 212, 255, 0.8));
+  opacity: 0;
+  pointer-events: none;
+  transform: rotate(-35deg);
+}
+
+.shooting-star-1 {
+  top: 18%;
+  left: 65%;
+  width: 130px;
+  animation: shootingStarAnim 10s ease-in-out infinite 2s;
+}
+
+.shooting-star-2 {
+  top: 38%;
+  left: 82%;
+  width: 150px;
+  animation: shootingStarAnim 14s ease-in-out infinite 6s;
+}
+
+.shooting-star-3 {
+  top: 10%;
+  left: 28%;
+  width: 100px;
+  animation: shootingStarAnim 12s ease-in-out infinite 9s;
+}
+
+@keyframes shootingStarAnim {
+  0% {
+    transform: translate(0, 0) rotate(-35deg) scaleX(0);
+    opacity: 0;
+  }
+  2% {
+    opacity: 1;
+    transform: translate(-30px, 30px) rotate(-35deg) scaleX(1);
+  }
+  6% {
+    transform: translate(-200px, 200px) rotate(-35deg) scaleX(0.3);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-200px, 200px) rotate(-35deg) scaleX(0);
+  }
+}
+
+.home-particles {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .space-backdrop::before,
-  .space-backdrop::after {
+  .space-backdrop::after,
+  .shooting-star {
     animation: none;
   }
 }
@@ -876,8 +949,16 @@ select.input option {
 }
 
 @media (max-width: 700px) {
+  .home-page {
+    overflow-x: hidden !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+  }
+
   .home-nav {
-    padding: 14px 16px !important;
+    width: calc(100% - 24px) !important;
+    margin: 12px auto 0 !important;
+    padding: 12px 14px !important;
   }
 
   .home-nav > div:last-child {

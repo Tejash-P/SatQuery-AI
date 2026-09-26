@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Brain, Shield, Layers, ArrowRight, Zap, Globe, Eye } from 'lucide-react';
 import BrandLogo from '@/components/BrandLogo';
+import Particles from '@/components/Particles';
 
 export default function HomePage() {
   const router = useRouter();
@@ -17,8 +18,24 @@ export default function HomePage() {
   }, [router]);
 
   return (
-    <div className="page-container home-page" style={{ minHeight: '100vh' }}>
-      <div className="space-backdrop" aria-hidden="true" />
+    <div className="page-container home-page" style={{ minHeight: '100vh', width: '100%', overflowX: 'hidden' }}>
+      <div className="space-backdrop" aria-hidden="true">
+        <div className="shooting-star shooting-star-1" />
+        <div className="shooting-star shooting-star-2" />
+        <div className="shooting-star shooting-star-3" />
+      </div>
+
+      <Particles
+        className="home-particles"
+        particleColors={['#60a5fa', '#00d4ff', '#c084fc', '#4ade80', '#ffd27a', '#ffffff']}
+        particleCount={140}
+        particleSpread={13}
+        speed={0.12}
+        particleBaseSize={85}
+        moveParticlesOnHover={true}
+        particleHoverFactor={0.5}
+        alphaParticles={true}
+      />
 
       {/* Nav */}
       <nav className="home-nav" aria-label="Primary navigation" style={{

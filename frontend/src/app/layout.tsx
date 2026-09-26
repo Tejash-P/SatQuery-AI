@@ -25,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={inter.variable} style={{ colorScheme: "dark", backgroundColor: "#08051b" }}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -34,7 +34,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body style={{ minHeight: "100vh", background: "var(--bg-deep)" }}>
+      <body style={{ minHeight: "100vh", backgroundColor: "#08051b", colorScheme: "dark", overflowX: "hidden" }}>
         {children}
       </body>
     </html>
